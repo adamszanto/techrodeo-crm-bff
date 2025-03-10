@@ -1,7 +1,6 @@
 package org.tr.crm.techrodeocrmbff.repository.dto;
 
 public class CustomerDTO {
-
     private String name;
     private Integer age;
     private String address;
