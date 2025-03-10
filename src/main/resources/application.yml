@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: techrodeo-crm-bff
+server:
+  port: 8081
