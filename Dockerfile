@@ -14,4 +14,4 @@ COPY --from=build /app/build/libs/techrodeo-crm-bff-0.0.1-SNAPSHOT.jar techrodeo
 
 ENTRYPOINT ["java", "-jar", "techrodeo-crm-bff.jar"]
 
-EXPOSE 8081
+EXPOSE 8085
