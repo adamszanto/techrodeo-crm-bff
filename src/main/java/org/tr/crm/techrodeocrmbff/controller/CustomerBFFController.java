@@ -14,7 +14,7 @@ public class CustomerBFFController {
     private final WebClient webClient;
 
     public CustomerBFFController(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://techrodeo-crm-be.hu/v1").build();
+        this.webClient = webClientBuilder.baseUrl("http://techrodeo.hu/v1").build();
     }
 
     @GetMapping
