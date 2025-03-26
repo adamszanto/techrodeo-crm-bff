@@ -1,6 +1,7 @@
 package org.tr.crm.techrodeocrmbff.repository.dto;
 
 public class CustomerDTO {
+    private Long id;
     private String name;
     private Integer age;
     private String address;
@@ -12,6 +13,14 @@ public class CustomerDTO {
     }
 
     public CustomerDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

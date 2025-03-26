@@ -7,6 +7,7 @@ import org.tr.crm.techrodeocrmbff.repository.dto.CustomerDTO;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/bff/customers")
 public class CustomerBFFController {
@@ -14,7 +15,7 @@ public class CustomerBFFController {
     private final WebClient webClient;
 
     public CustomerBFFController(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("http://techrodeo.hu/v1").build();
+        this.webClient = webClientBuilder.baseUrl("http://localhost:8080/v1").build();
     }
 
     @GetMapping
@@ -28,21 +29,25 @@ public class CustomerBFFController {
     }
 
     @PostMapping
-    public ResponseEntity<String> addCustomer(@RequestBody CustomerDTO customer) {
-        return webClient.post()
+    public ResponseEntity<CustomerDTO> addCustomer(@RequestBody CustomerDTO customer) {
+        CustomerDTO savedCustomer = webClient.post()
                 .uri("/customer")
                 .bodyValue(customer)
                 .retrieve()
-                .toEntity(String.class)
+                .bodyToMono(CustomerDTO.class)
                 .block();
+
+        return ResponseEntity.ok(savedCustomer);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCustomer(@PathVariable String id) {
-        return webClient.delete()
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+        webClient.delete()
                 .uri("/customer/" + id)
                 .retrieve()
                 .toEntity(String.class)
                 .block();
+
+        return ResponseEntity.noContent().build();
     }
 }
